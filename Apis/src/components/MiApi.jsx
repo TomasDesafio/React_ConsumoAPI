@@ -1,34 +1,33 @@
-import React from 'react'
-import { useState,useEffect } from 'react';
-
-export default function MiApi({indicador}) {
-    const [indicadorData, setindicadorData] = useState(null);
-   
-
-  
-
-
-    const fetchindicador = async (indicador) => {
-        const response = await fetch(`https://mindicador.cl/api/${indicador}`);
-        const data = await response.json();
-        setindicadorData(data);
-      
-        
-      };
-      useEffect(() => {
-        if (indicador !== '') {
-         return fetchindicador();
-        }
-      }, []);
-
+import moment from 'moment';
+export default function MiApi({ indicadorData }) {
+  if (!indicadorData) {
+    return <div>No se encontraron datos para mostrar.</div>;
+  }
+  const nombreIndicador = indicadorData.nombre;
 
   return (
     <div>
-      <div>
-          <h3>{indicadorData.nombre}</h3>
-          <p>Fecha: {indicadorData.serie.fecha} </p>
-          <p>Valor: {indicadorData.serie.valor}</p>
-        </div>
+      <h3>{nombreIndicador}</h3>
+      <table className="table">
+        <thead>
+          <tr>
+            <th>Fecha</th>
+            <th>Valor</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+          {indicadorData.serie.map((dato, index) => (
+            <tr key={index}>
+              <td>{dato.fecha}</td>
+              <td>{dato.valor}</td>
+              
+              
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      
     </div>
-  )
+  );
 }
