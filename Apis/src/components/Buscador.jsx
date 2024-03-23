@@ -25,9 +25,11 @@ export default function Buscador() {
           }
           });
 
-
-        setIndicadorData(datafiltrada);
-        console.log(datafiltrada)
+        const dataordenada = datafiltrada.sort((x,y) => x.serie.fecha - y.serie.fecha)
+        console.log(dataordenada)
+        setIndicadorData(dataordenada);
+        console.log(dataordenada)
+        
         
         
       } catch (error) {
