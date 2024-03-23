@@ -3,7 +3,7 @@ export default function MiApi({ indicadorData }) {
   if (!indicadorData) {
     return <div>No se encontraron datos para mostrar.</div>;
   }
-  const nombreIndicador = indicadorData.nombre;
+  const nombreIndicador = indicadorData[0].nombre;
 
   return (
     <div>
@@ -17,9 +17,9 @@ export default function MiApi({ indicadorData }) {
           </tr>
         </thead>
         <tbody>
-          {indicadorData.serie.map((dato, index) => (
+          {indicadorData[0].serie.map((dato, index) => (
             <tr key={index}>
-              <td>{dato.fecha}</td>
+              <td>{moment(dato.fecha).format('DD-MM-YY')}</td>
               <td>{dato.valor}</td>
               
               

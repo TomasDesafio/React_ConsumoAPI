@@ -5,6 +5,7 @@ export default function Buscador() {
   const [indicador, setIndicador] = useState('');
   const [indicadorData, setIndicadorData] = useState(null);
 
+  
   const fetchData = async () => {
     if (indicador !== '') {
       try {
@@ -15,7 +16,19 @@ export default function Buscador() {
           );
         }
         const data = await response.json();
-        setIndicadorData(data);
+        console.log(data)
+        const datafiltrada=[data].map((element) => {
+        const {nombre,serie}=element;
+          return {
+            nombre,
+            serie
+          }
+          });
+
+
+        setIndicadorData(datafiltrada);
+        console.log(datafiltrada)
+        
         
       } catch (error) {
         console.error('Error al obtener datos del indicador:', error.message);
@@ -23,6 +36,12 @@ export default function Buscador() {
       }
     }
   };
+
+  useEffect(() => {
+    if (indicador !== '') {
+      fetchData();
+    }
+  }, []);
 
   const handleIndicadorChange = (e) => {
     setIndicador(e.target.value.toLowerCase());
