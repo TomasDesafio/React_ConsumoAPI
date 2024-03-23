@@ -9,7 +9,7 @@ function App() {
   return (
     <>
       <div>
-        <h1>Aplicación de Indicadores Económicos</h1>
+        <h2 className='m-3'>Aplicación de Indicadores Económicos</h2>
         <Buscador />
       </div>
     </>

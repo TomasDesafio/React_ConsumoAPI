@@ -39,11 +39,11 @@ export default function Buscador() {
     }
   };
 
-  useEffect(() => {
+  /*useEffect(() => {
     if (indicador !== '') {
       fetchData();
     }
-  }, []);
+  }, []);*/
 
   const handleIndicadorChange = (e) => {
     setIndicador(e.target.value.toLowerCase());
@@ -56,14 +56,16 @@ export default function Buscador() {
   return (
     <div>
       <div>
-        <h2>Indicadores Económicos</h2>
+        <h3 className='text-center m-3'>Indicadores Económicos</h3>
+        <p className='text-center m-3'>Consulte por :[uf, ivp, dolar, dolar_intercambio, euro, ipc, utm, imacec, tpm, libra_cobre, tasa_desempleo, bitcoin] </p>
         <input
           type="text"
-          placeholder="Ingrese el indicador económico"
+          placeholder="Ingrese el indicador económico:uf,dolar,bitcoin"
           value={indicador}
           onChange={handleIndicadorChange}
+          className='m-3'
         />
-        <button onClick={handleSearch}>Buscar</button>
+        <button className='m-3' onClick={handleSearch}>Buscar</button>
       </div>
       {indicadorData && <MiApi indicadorData={indicadorData} />}
     </div>
